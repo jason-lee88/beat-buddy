@@ -1,0 +1,27 @@
+#navbar {
+  display: flex;
+  width: 100%;
+  background-color: #FF0000;
+  align-items: center;
+}
+
+#navbar img {
+  max-width: 5%;
+  margin: 10px;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+#navbar button {
+  border: none;
+  height: 100%;
+  background-color: #FF0000; 
+  color: white;
+  font-size: 24px;
+  padding: 20px;
+}
+
+#navbar button:hover {
+  background-color: #EE0000; 
+  cursor: pointer;
+}

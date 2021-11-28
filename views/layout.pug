@@ -1,9 +1,16 @@
 doctype html
 html
-  head
-    title= title
-    link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.1/semantic.min.css')
-    link(rel='stylesheet', href='/stylesheets/style.css')
-    script(src='/javascripts/main.js')
+  head 
+    block head
+      link(rel='stylesheet', href='/stylesheets/layout.css')
+      link(rel='stylesheet', href='/stylesheets/navbar.css')
+      script(src='/javascripts/navbar.js')
   body
+    div#navbar
+        img(src='images/logoInverted.png' alt='logo')
+        button#home Home
+        if user_id
+          button#users Users
+          button#profile My Profile
+          button#signout Sign Out
     block content
