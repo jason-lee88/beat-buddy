@@ -1,0 +1,14 @@
+extends layout
+
+append head
+  title= title
+  link(rel='stylesheet', href='/stylesheets/users.css')
+  script(src='/javascripts/users.js')
+block content
+  body
+    div#header
+      h1= title
+      if username
+        h3 Signed in as #{username}
+    if username
+      h2 Test
