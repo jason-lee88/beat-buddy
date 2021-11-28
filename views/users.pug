@@ -11,4 +11,11 @@ block content
       if username
         h3 Signed in as #{username}
     if username
-      h2 Test
+      input(placeholder='Search a User').searchbox#usersearch
+      button.searchbutton#usersearchbutton
+        | Search
+    div.user
+      p.username jsonderulo
+      p.userfield Email Address: jsonderulo@mail.com 
+      p.userfield Instagram: @jsonderulo
+      p.userfield Snapchat: @jsonderulo

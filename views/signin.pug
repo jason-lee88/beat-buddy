@@ -1,0 +1,17 @@
+extends layout
+
+append head
+  title= title
+  link(rel='stylesheet', href='/stylesheets/signin.css')
+  script(src='/javascripts/signin.js')
+block content
+  body
+    div#header
+      h1= title
+    if !username
+      h5 Username:
+      input.field#username
+      h5 Password:
+      input.field#password
+      button#submitbutton
+        | Sign In

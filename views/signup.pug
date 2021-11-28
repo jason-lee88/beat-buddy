@@ -1,0 +1,23 @@
+extends layout
+
+append head
+  title= title
+  link(rel='stylesheet', href='/stylesheets/signup.css')
+  script(src='/javascripts/signup.js')
+block content
+  body
+    div#header
+      h1= title
+    if !username
+      h5 Username (required):
+      input.field#username
+      h5 Password (required):
+      input.field#password
+      h5 Email Address:
+      input.field#email
+      h5 Instagram: 
+      input.field#instagram
+      h5 Snapchat:
+      input.field#snapchat
+      button#submitbutton
+        | Sign Up

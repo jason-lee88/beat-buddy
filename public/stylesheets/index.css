@@ -1,7 +1,3 @@
-#header {
-  text-align: center;
-}
-
 .outbutton {
   display: block;
   background-color: #FF0000;
@@ -19,34 +15,6 @@
   cursor: pointer;
 }
 
-#artistsearch {
-  display: block;
-  border: solid 2px;
-  width: 30%;
-  font-size: 18px;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 2%;
-  margin-bottom: 1%;
-  padding: 5px;
-}
-
-#artistsearchbutton {
-  display: block;
-  background-color: #FF0000;
-  color: white;
-  border: none;
-  font-size: 28px;
-  width: 8%;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-#artistsearchbutton:hover {
-  background-color: #EE0000;
-  cursor: pointer;
-}
-
 .concert {
   display: block;
   border: solid 2px;
@@ -54,6 +22,7 @@
   margin-left: auto;
   margin-right: auto;
   margin-top: 2%;
+  margin-bottom: 50px;
   background-color: #EEEEEE;
   border-radius: 20px;
 }
@@ -63,22 +32,7 @@ p.concerttitle {
   text-align: center;
 }
 
-p.concertartist {
-  font-size: 12px;
-  text-align: center;
-}
-
-p.concerttime {
-  font-size: 12px;
-  text-align: center;
-}
-
-p.concertdate {
-  font-size: 12px;
-  text-align: center;
-}
-
-p.concertvenue {
+p.concertfield {
   font-size: 12px;
   text-align: center;
 }

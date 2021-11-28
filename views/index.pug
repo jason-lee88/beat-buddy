@@ -13,17 +13,17 @@ block content
       else
         h3 Welcome! Please create an account or sign in to continue...
     if username
-      input(placeholder='Search an Artist')#artistsearch
-      button#artistsearchbutton
+      input(placeholder='Search an Artist').searchbox#artistsearch
+      button.searchbutton#artistsearchbutton
         | Search
       div.concert
         p.concerttitle
           a(href='https://jasonedwardlee.com')
             | Big Concert!
-        p.concertartist Json Derulo
-        p.concertdate 2021-11-28
-        p.concerttime 7:00 PM
-        p.concertvenue Lehigh University STEPS Concourse
+        p.concertfield Json Derulo
+        p.concertfield 2021-11-28
+        p.concertfield 7:00 PM
+        p.concertfield Lehigh University STEPS Concourse
         button.interested
           | I'm Interested!
     else

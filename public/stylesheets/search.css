@@ -1,0 +1,27 @@
+.searchbox {
+    display: block;
+    border: solid 2px;
+    width: 30%;
+    font-size: 18px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 2%;
+    margin-bottom: 1%;
+    padding: 5px;
+}
+  
+.searchbutton {
+    display: block;
+    background-color: #FF0000;
+    color: white;
+    border: none;
+    font-size: 28px;
+    width: 8%;
+    margin-left: auto;
+    margin-right: auto;
+}
+  
+.searchbutton:hover {
+    background-color: #EE0000;
+    cursor: pointer;
+}
