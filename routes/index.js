@@ -2,15 +2,15 @@ const express = require('express');
 const router = express.Router();
 
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Beat Buddy', username: 'JsonDerulo'});
+  res.render('index', { title: 'Beat Buddy', usernam: 'JsonDerulo'});
 });
 
 router.get('/users', function(req, res, next) {
-  res.render('users', { title: 'Search Users', username: 'JsonDerulo'});
+  res.render('users', { title: 'Search Users', usernam: 'Admin', admin: true});
 });
 
 router.get('/profile', function(req, res, next) {
-  res.render('profile', { title: 'My Profile', username: 'JsonDerulo'})
+  res.render('profile', { title: 'My Profile', usernam: 'JsonDerulo'})
 });
 
 router.get('/signup', function(req, res, next) {
