@@ -11,4 +11,18 @@ window.addEventListener('load', function() {
             }
         });
     }
+
+    const removeUserButtons = document.querySelectorAll("button.remove");
+    for (removebutton of removeUserButtons) {
+        removebutton.addEventListener("click", async function() {
+            for (child of removebutton.parentNode.childNodes) {
+                if (child.className == "username") {
+                    fetch('/users/' + child.innerHTML, {
+                        method: 'DELETE'
+                    });
+                    location.reload();
+                }
+            }
+        })
+    }
 });

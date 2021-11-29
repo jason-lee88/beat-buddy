@@ -54,4 +54,8 @@ router.post('/signout', async function(req, res, next) {
     res.redirect('/');
 });
 
+router.delete('/users/:username', async function(req, res, next) {
+    await User.deleteOne({ username: req.params.username, admin: false });
+});
+
 module.exports = router;
