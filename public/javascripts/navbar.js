@@ -19,4 +19,12 @@ window.addEventListener('load', function() {
             location.href = '/profile';
         })
     }
+
+    const signout = document.getElementById("signout");
+    if (signout) {
+        signout.addEventListener("click", async function() {
+            await fetch('/signout', { method: 'POST' });
+            location.href = '/';
+        });
+    }
 });
