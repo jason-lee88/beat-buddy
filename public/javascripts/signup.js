@@ -1,4 +1,22 @@
 window.addEventListener('load', async function() {
+    const instagram = document.getElementById("instagram");
+    if (instagram) {
+        instagram.addEventListener("input", function() {
+            if (instagram.value.charAt(0) !== "@") {
+                instagram.value = "@" + instagram.value;
+            }
+        })
+    }
+
+    const snapchat = document.getElementById("snapchat");
+    if (snapchat) {
+        snapchat.addEventListener("input", function() {
+            if (snapchat.value.charAt(0) !== "@") {
+                snapchat.value = "@" + snapchat.value;
+            }
+        })
+    }
+
     const submitbutton = document.getElementById("submitbutton");
     if (submitbutton) {
         submitbutton.addEventListener("click", async function() {
@@ -8,8 +26,8 @@ window.addEventListener('load', async function() {
                 username: username,
                 password: password,
                 email: document.getElementById("email").value,
-                instagram: document.getElementById("instagram").value,
-                snapchat: document.getElementById("snapchat").value
+                instagram: document.getElementById("instagram").value.substring(1),
+                snapchat: document.getElementById("snapchat").value.substring(1)
             }
             let res = await fetch('/signup', { // POST request
                 method: 'POST',
