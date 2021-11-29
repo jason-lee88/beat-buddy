@@ -30,9 +30,18 @@ router.get('/users', async function(req, res, next) {
   }
 });
 
-router.get('/profile', function(req, res, next) {
+router.get('/profile', async function(req, res, next) {
   if (req.cookies.username) {
-    res.render('profile', { title: 'My Profile', username: req.cookies.username, admin: req.cookies.admin === 'true' });
+    const user = await User.findOne({ username: req.cookies.username });
+    let email = "";
+    let instagram = "";
+    let snapchat = "";
+    if (user) {
+      email = user.email;
+      instagram = user.instagram;
+      snapchat = user.snapchat;
+    }
+    res.render('profile', { title: 'My Profile', username: req.cookies.username, admin: req.cookies.admin === 'true', email: email, instagram: instagram, snapchat: snapchat });
   }
   else {
     res.redirect('/');
