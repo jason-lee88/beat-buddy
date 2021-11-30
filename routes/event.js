@@ -11,9 +11,13 @@ router.get('/', async function(req, res) {
         await fetch('https://app.ticketmaster.com/discovery/v2/events.json?size=1&apikey=Mm2ukG9cVIg6pnRKDvunqWDSYXwjRK1U&keyword=' + req.query.search)
         .then(response => response.json())
         .then(function(jsonData) {
+
+            let eventName = jsonData.data.children._embedded.events[0].name;
+
+            console.log("The event name is " + eventName);
             console.log(jsonData);
-            res.send(jsonData);
-            res.status(200).send();
+            res.send(eventName);
+            //res.status(200).send();
 
         });
     }
