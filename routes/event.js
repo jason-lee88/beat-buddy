@@ -8,7 +8,7 @@ router.post('/event/:eventID', async function(req, res, next) {
     if (event) {
         interest = event.interest;
         if (interest.includes(req.cookies.username)) {
-            return res.send({ err: "You're already intereseted in this event!" });
+            return res.send({ err: "You're already interested in this event!" });
         }
         interest.push(req.cookies.username);
         return Event.findOneAndUpdate({ eventID: eventID }, { interest: interest });
