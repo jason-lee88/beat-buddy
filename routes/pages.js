@@ -17,30 +17,32 @@ router.get('/', async function(req, res, next) {
         eventRes.on('end', async () => {
           let searchedEvents = [];
           const eventsData = JSON.parse(rawData);
-          const events = eventsData._embedded.events;
-          await Promise.all(events.map(event => {
-              const eventID = event.id;
-              const eventName = event.name;
-              const eventDate = event.dates.start.localDate;
-              const eventTime = event.dates.start.localTime;
-              const addressName = event._embedded.venues[0].name;
-              const addressRoad = event._embedded.venues[0].address.line1;
-              const addressCity = event._embedded.venues[0].city.name;
-              const addressState = event._embedded.venues[0].state.stateCode;
-              const addressZip = event._embedded.venues[0].postalCode;
+          if (eventsData._embedded && eventsData._embedded.events) {
+            const events = eventsData._embedded.events;
+            await Promise.all(events.map(event => {
+                const eventID = event.id;
+                const eventName = event.name;
+                const eventDate = event.dates.start.localDate;
+                const eventTime = event.dates.start.localTime;
+                const addressName = event._embedded.venues[0].name;
+                const addressRoad = event._embedded.venues[0].address.line1;
+                const addressCity = event._embedded.venues[0].city.name;
+                const addressState = event._embedded.venues[0].state.stateCode;
+                const addressZip = event._embedded.venues[0].postalCode;
 
-              searchedEvents.push({
-                  "eventID": eventID,
-                  "eventName": eventName,
-                  "eventDate": eventDate,
-                  "eventTime": eventTime,
-                  "addressName": addressName,
-                  "addressRoad": addressRoad,
-                  "addressCity": addressCity,
-                  "addressState": addressState,
-                  "addressZip": addressZip
-              });
-          }));
+                searchedEvents.push({
+                    "eventID": eventID,
+                    "eventName": eventName,
+                    "eventDate": eventDate,
+                    "eventTime": eventTime,
+                    "addressName": addressName,
+                    "addressRoad": addressRoad,
+                    "addressCity": addressCity,
+                    "addressState": addressState,
+                    "addressZip": addressZip
+                });
+            }));
+          }
 
           res.render('index', { title: 'Beat Buddy', username: req.cookies.username, admin: req.cookies.admin === 'true', searchedEvents: searchedEvents });
         });
