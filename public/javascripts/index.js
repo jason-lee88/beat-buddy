@@ -24,9 +24,11 @@ window.addEventListener('load', function () {
                     header: { 'Accept': 'application/json' }
                 })
                 eventsData = await eventsData.json();
-                console.log("event data is ");
                 const events = eventsData._embedded.events;
+                console.log("RAW data is ");
                 console.log(events);
+                console.log("--------------------------------------");
+                console.log("Extracted info: ");
                 let arr = [];
 
                 await Promise.all(events.map(async function (eventsData) {
@@ -61,10 +63,10 @@ window.addEventListener('load', function () {
                         "AddressCountry": addressCountry
                     });
 
-                    console.log(arr);
-
 
                 }));
+
+                console.log(arr);
 
 
             }
