@@ -1,10 +1,51 @@
 const express = require('express');
-const router = express.Router();
+const https = require('https');
 const User = require('../models/user.js');
+const router = express.Router();
 
-router.get('/', function(req, res, next) {
+router.get('/', async function(req, res, next) {
   if (req.cookies.username) {
-    res.render('index', { title: 'Beat Buddy', username: req.cookies.username, admin: req.cookies.admin === 'true' });
+    const searchValue = req.query.search;
+    if (searchValue) {
+      https.get('https://app.ticketmaster.com/discovery/v2/events.json?apikey=Mm2ukG9cVIg6pnRKDvunqWDSYXwjRK1U&countryCode=US&keyword=' + searchValue, eventRes => {
+        eventRes.setEncoding('utf8');
+        let rawData = '';
+        eventRes.on('data', chunk => {
+          rawData += chunk;
+        });
+        eventRes.on('end', async () => {
+          let searchedEvents = [];
+          const eventsData = JSON.parse(rawData);
+          const events = eventsData._embedded.events;
+          await Promise.all(events.map(event => {
+              const eventID = event.id;
+              const eventName = event.name;
+              const eventDate = event.dates.start.localDate;
+              const eventTime = event.dates.start.localTime;
+              const eventTimezone = event.dates.timeZone;
+              const addressName = event._embedded.venues[0].name;
+              const addressRoad = event._embedded.venues[0].address.line1;
+              const addressCity = event._embedded.venues[0].city.name;
+              const addressState = event._embedded.venues[0].state.name;
+              const addressZip = event._embedded.venues[0].postalCode;
+
+              searchedEvents.push({
+                  "eventID": eventID,
+                  "eventName": eventName,
+                  "eventDate": eventDate,
+                  "eventTime": eventTime,
+                  "eventTimezone": eventTimezone,
+                  "addressName": addressName,
+                  "addressRoad": addressRoad,
+                  "addressCity": addressCity,
+                  "addressState": addressState,
+                  "addressZip": addressZip
+              });
+          }));
+          res.render('index', { title: 'Beat Buddy', username: req.cookies.username, admin: req.cookies.admin === 'true', searchedEvents: searchedEvents });
+        });
+      });
+    }
   }
   else {
     res.render('index', { title: 'Beat Buddy' });

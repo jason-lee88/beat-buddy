@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 
 const eventSchema = new mongoose.Schema({
+     "eventID": { type: String },
      "name": { type: String, required: true},
      "date": { type: Date },
      "time": { type: Date },
@@ -9,7 +10,7 @@ const eventSchema = new mongoose.Schema({
      "city": { type: String },
      "state": { type: String },
      "country": { type: String },
-     "interest": [{ type: String}]
+     "interest": [{ type: String }]
 });
 
 module.exports = mongoose.model('Event', eventSchema);

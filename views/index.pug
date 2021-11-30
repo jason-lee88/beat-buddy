@@ -16,16 +16,17 @@ block content
       input(placeholder='Search an Event').searchbox#eventsearch
       button.searchbutton#eventsearchbutton
         | Search
-      div.concert
-        p.concerttitle
-          a(href='https://jasonedwardlee.com')
-            | Big Concert!
-        p.concertfield Json Derulo
-        p.concertfield 2021-11-28
-        p.concertfield 7:00 PM
-        p.concertfield Lehigh University STEPS Concourse
-        button.interested
-          | I'm Interested!
+      each searchedEvent in searchedEvents
+        div.concert#searchedEvent.eventID
+          p.concerttitle
+            a(href='https://jasonedwardlee.com')= searchedEvent.eventName
+          p.concertfield= searchedEvent.eventDate
+          p.concertfield= searchedEvent.eventTime
+          p.concertfield= searchedEvent.eventTimezone
+          p.concertfield= searchedEvent.addressName
+          p.concertfield= searchedEvent.addressRoad + ', ' + searchedEvent.adressCity + ', ' + searchedEvent.addressState + ' ' + searchedEvent.addressZip
+          button.interested
+            | I'm Interested!
     else
       button.outbutton#signup Create an Account
       button.outbutton#signin Sign In
