@@ -8,7 +8,8 @@ const eventSchema = new mongoose.Schema({
      "road": { type: String },
      "city": { type: String },
      "state": { type: String },
-     "country": { type: String }
+     "country": { type: String },
+     "interest": [{ type: String}]
 });
 
 module.exports = mongoose.model('Event', eventSchema);
