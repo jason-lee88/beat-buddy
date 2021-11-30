@@ -13,21 +13,26 @@ Judy Zhang: Backend
 ## Technologies/Libraries/Frameworks  
 Frontend:  
   -React.js  
+  
 Backend:  
   -Express.js  
+  
 Database:  
   -MongoDB/Mongoose  
+  
 External Library:  
   -bycrypt  
+  
 External API:  
   -TicketMaster API
+  
 Hosting:  
   -Heroku  
   
 ## How to run Beat Buddy as an admin  
   1. Clone this repository locally  
   2. Create an .env file with the contents of  
-  "MONGODB_URI=mongodb://<username>:<password>@cluster0-shard-00-00.8bybw.mongodb.net:27017,cluster0-shard-00-01.8bybw.mongodb.net:27017,cluster0-shard-00-02.8bybw.mongodb.net:27017/myFirstDatabase?ssl=true&replicaSet=atlas-e4pdr2-shard-0&authSource=admin&retryWrites=true&w=majority  
+  "MONGODB_URI=mongodb://<username>:<password>@cluster0-shard-00-00.8bybw.mongodb.net:27017,cluster0-shard-00-01.8bybw.mongodb.net:27017,cluster0-shard-00-02.8bybw.mongodb.net:27017/myFirstDatabase?ssl=true&replicaSet=atlas-e4pdr2-shard-0&authSource=admin&retryWrites=true&w=majority"  
   3. Install NPM
   4. Run 'npm start run' in the command line
   5. View app from 'localhost:3000'
