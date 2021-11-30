@@ -18,15 +18,15 @@ router.get('/', async function(req, res, next) {
           const eventsData = JSON.parse(rawData);
           const events = eventsData._embedded.events;
           await Promise.all(events.map(event => {
+              console.log(event.dates);
               const eventID = event.id;
               const eventName = event.name;
               const eventDate = event.dates.start.localDate;
               const eventTime = event.dates.start.localTime;
-              const eventTimezone = event.dates.timeZone;
               const addressName = event._embedded.venues[0].name;
               const addressRoad = event._embedded.venues[0].address.line1;
               const addressCity = event._embedded.venues[0].city.name;
-              const addressState = event._embedded.venues[0].state.name;
+              const addressState = event._embedded.venues[0].state.stateCode;
               const addressZip = event._embedded.venues[0].postalCode;
 
               searchedEvents.push({
@@ -34,7 +34,6 @@ router.get('/', async function(req, res, next) {
                   "eventName": eventName,
                   "eventDate": eventDate,
                   "eventTime": eventTime,
-                  "eventTimezone": eventTimezone,
                   "addressName": addressName,
                   "addressRoad": addressRoad,
                   "addressCity": addressCity,
@@ -45,6 +44,9 @@ router.get('/', async function(req, res, next) {
           res.render('index', { title: 'Beat Buddy', username: req.cookies.username, admin: req.cookies.admin === 'true', searchedEvents: searchedEvents });
         });
       });
+    }
+    else {
+      res.render('index', { title: 'Beat Buddy', username: req.cookies.username, admin: req.cookies.admin === 'true', searchedEvents: [] });
     }
   }
   else {
