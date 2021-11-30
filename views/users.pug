@@ -14,8 +14,12 @@ block content
       input(placeholder='Search a User').searchbox#usersearch
       button.searchbutton#usersearchbutton
         | Search
-    div.user
-      p.username jsonderulo
-      p.userfield Email Address: jsonderulo@mail.com 
-      p.userfield Instagram: @jsonderulo
-      p.userfield Snapchat: @jsonderulo
+      each searchedUser in searchedUsers
+        div.user
+          p.username= searchedUser.username
+          p.userfield= "Email Address: " + searchedUser.email
+          p.userfield= "Instagram: @" + searchedUser.instagram
+          p.userfield= "Snapchat: @" + searchedUser.snapchat
+          if admin
+            button.remove
+              | Remove User
