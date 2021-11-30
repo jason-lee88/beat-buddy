@@ -1,15 +1,12 @@
 const mongoose = require('mongoose');
 
 const eventSchema = new mongoose.Schema({
-     "eventID": { type: String },
-     "name": { type: String, required: true},
-     "date": { type: Date },
-     "time": { type: Date },
+     "eventID": { type: String, required: true, unique: true },
+     "name": { type: String },
+     "date": { type: String },
+     "time": { type: String },
      "addressName": { type: String },
-     "road": { type: String },
-     "city": { type: String },
-     "state": { type: String },
-     "zip": { type: String },
+     "address": { type: String },
      "interest": [{ type: String }]
 });
 

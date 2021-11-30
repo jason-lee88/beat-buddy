@@ -1,6 +1,7 @@
 const express = require('express');
 const https = require('https');
 const User = require('../models/user.js');
+const Event = require('../models/event.js');
 const router = express.Router();
 
 router.get('/', async function(req, res, next) {
@@ -18,7 +19,6 @@ router.get('/', async function(req, res, next) {
           const eventsData = JSON.parse(rawData);
           const events = eventsData._embedded.events;
           await Promise.all(events.map(event => {
-              console.log(event.dates);
               const eventID = event.id;
               const eventName = event.name;
               const eventDate = event.dates.start.localDate;
@@ -41,6 +41,7 @@ router.get('/', async function(req, res, next) {
                   "addressZip": addressZip
               });
           }));
+
           res.render('index', { title: 'Beat Buddy', username: req.cookies.username, admin: req.cookies.admin === 'true', searchedEvents: searchedEvents });
         });
       });
@@ -52,6 +53,11 @@ router.get('/', async function(req, res, next) {
   else {
     res.render('index', { title: 'Beat Buddy' });
   }
+});
+
+router.get('/event/:eventID', async function(req, res, next) {
+  const event = await Event.findOne({ eventID: req.params.eventID });
+  res.render('event', { title: "Who's Interested?", username: req.cookies.username, admin: req.cookies.admin === 'true', event: event });
 });
 
 router.get('/users', async function(req, res, next) {

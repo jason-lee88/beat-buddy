@@ -1,0 +1,21 @@
+extends layout
+
+append head
+  title= title
+  link(rel='stylesheet', href='/stylesheets/event.css')
+block content
+  body
+    div#header
+      h1= title
+      if username
+        h3 Signed in as #{username}
+    if username
+      h5= "Event: " + event.name
+      h5= "Date: " + event.date
+      h5= "Time: " + event.time
+      h5= "Venue Name: " + event.addressName
+      h5= "Venue Address: " + event.address 
+      br
+      h5 Interested Users:
+      each user in event.interest
+        h5.field= user

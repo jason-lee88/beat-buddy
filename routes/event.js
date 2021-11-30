@@ -2,28 +2,27 @@ const express = require('express');
 const router = express.Router();
 const Event = require('../models/event.js');
 
-// GET route to return a JSON listing of the specific film's content
-router.get('/', async function(req, res) {
-
-    // If having search query
-    if (req.query.search) {
-        console.log("the search query is " + req.query.search)
-        await fetch('https://app.ticketmaster.com/discovery/v2/events.json?size=1&apikey=Mm2ukG9cVIg6pnRKDvunqWDSYXwjRK1U&keyword=' + req.query.search)
-        .then(response => response.json())
-        .then(function(jsonData) {
-
-            let eventName = jsonData.data.children._embedded.events[0].name;
-
-            console.log("The event name is " + eventName);
-            console.log(jsonData);
-            res.send(eventName);
-            //res.status(200).send();
-
-        });
+router.post('/event/:eventID', async function(req, res, next) {
+    const eventID = req.params.eventID;
+    const event = await Event.findOne({ eventID: eventID });
+    if (event) {
+        interest = event.interest;
+        if (interest.includes(req.cookies.username)) {
+            return res.send({ err: "You're already intereseted in this event!" });
+        }
+        interest.push(req.cookies.username);
+        return Event.findOneAndUpdate({ eventID: eventID }, { interest: interest });
     }
-    else {
-
-    }
-  });
+    Event.create({
+        eventID: eventID,
+        name: req.body.name,
+        date: req.body.date,
+        time: req.body.time,
+        addressName: req.body.addressName,
+        address: req.body.address,
+        interest: [req.cookies.username]
+    });
+    return res.send();
+});
 
 module.exports = router;

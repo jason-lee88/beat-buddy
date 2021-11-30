@@ -17,13 +17,12 @@ block content
       button.searchbutton#eventsearchbutton
         | Search
       each searchedEvent in searchedEvents
-        div.concert#searchedEvent.eventID
-          p.concerttitle
-            a(href='https://jasonedwardlee.com')= searchedEvent.eventName
-          p.concertfield= "Date: " + searchedEvent.eventDate
-          p.concertfield= "Time: " + searchedEvent.eventTime
-          p.concertfield= "Venue Name: " + searchedEvent.addressName
-          p.concertfield= "Venue Address: " + searchedEvent.addressRoad + ', ' + searchedEvent.addressCity + ', ' + searchedEvent.addressState + ' ' + searchedEvent.addressZip
+        div(id=searchedEvent.eventID).concert
+          button.name.concerttitle= searchedEvent.eventName
+          p.date.concertfield= "Date: " + searchedEvent.eventDate
+          p.time.concertfield= "Time: " + searchedEvent.eventTime
+          p.addressName.concertfield= "Venue Name: " + searchedEvent.addressName
+          p.address.concertfield= "Venue Address: " + searchedEvent.addressRoad + ', ' + searchedEvent.addressCity + ', ' + searchedEvent.addressState + ' ' + searchedEvent.addressZip
           button.interested
             | I'm Interested!
     else

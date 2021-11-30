@@ -8,18 +8,18 @@ window.addEventListener('load', function() {
                 username: username,
                 password: password
             }
-            let res = await fetch('/signin', { // POST request
+            let res = await fetch('/signin', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify(data)
             });
-            try { // error was returned
+            try {
                 res = await res.json();
                 window.alert(res.err)
             }
-            catch { // no error was returned (redirect occurred)
+            catch {
                 location.href = '/';
             }
         });
