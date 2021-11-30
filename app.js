@@ -8,6 +8,7 @@ const dotenv = require('dotenv');
 
 var indexRouter = require('./routes/pages');
 var userRouter = require('./routes/user');
+var eventRouter = require('./routes/event');
 
 //dotenv.config({ path: '.env.example' });
 dotenv.config({ path: '.env' });
@@ -38,6 +39,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/', userRouter);
+app.use('/event', eventRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
