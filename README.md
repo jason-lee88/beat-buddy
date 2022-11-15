@@ -1,6 +1,3 @@
-# Beat Buddy  
-Live web app:  https://beat-buddy-h.herokuapp.com/
-
 ## Project Description
 The purpose of Beat Buddy is for users to express interest in upcoming music events, and meet other people who are interested in attending. It is aimed at those who want to attend a concert but are discouraged because they have no companion to go with. The app will use the Ticketmaster API as a way to retrieve upcoming concerts and festivals BeatBuddy displays the number of members not interested/interested/going to an event. It also provides other users contact information on their profile so other users can contact them. On this app they can talk to other users and become "beat buddies" prior to the event.
 
