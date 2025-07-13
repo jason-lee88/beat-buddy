@@ -3,7 +3,7 @@ extends layout
 append head
   title= title
   link(rel='stylesheet', href='/stylesheets/users.css')
-  script(src='/javascripts/users.js')
+  script(src='/javascript/users.js')
 block content
   body
     div#header
@@ -11,15 +11,19 @@ block content
       if username
         h3 Signed in as #{username}
     if username
-      input(placeholder='Search a User').searchbox#usersearch
-      button.searchbutton#usersearchbutton
-        | Search
-      each searchedUser in searchedUsers
-        div.user
-          p.username= searchedUser.username
-          p.userfield= "Email Address: " + searchedUser.email
-          p.userfield= "Instagram: @" + searchedUser.instagram
-          p.userfield= "Snapchat: @" + searchedUser.snapchat
-          if admin
-            button.remove
-              | Remove User
+      form(id='usersearchform')
+        input(placeholder='Search a User').searchbox#usersearch
+        input(type='submit', value='Search').searchbutton#usersearchbutton
+      if searchedUsers !== undefined
+        if searchedUsers.length === 0
+          p.nousers No users found. Please try a different search.
+        else
+          each searchedUser in searchedUsers
+            div.user
+              p.username= searchedUser.username
+              p.userfield= "Email Address: " + searchedUser.email
+              p.userfield= "Instagram: @" + searchedUser.instagram
+              p.userfield= "Snapchat: @" + searchedUser.snapchat
+              if admin
+                button.remove
+                  | Remove User

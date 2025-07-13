@@ -6,9 +6,11 @@ const router = express.Router();
 
 router.get('/', async function (req, res, next) {
   if (req.cookies.username) {
+    let searchedEvents = undefined;
     const searchValue = req.query.search;
     if (searchValue) {
-      https.get('https://app.ticketmaster.com/discovery/v2/events.json?apikey=bkL6GOFGm6Zp4ZVhItcGnwC8j6HPxyoq&countryCode=US&keyword=' + searchValue, eventRes => {
+      searchedEvents = [];
+      https.get(`https://app.ticketmaster.com/discovery/v2/events.json?apikey=${process.env.TICKETMASTER_API_KEY}&countryCode=US&keyword=${searchValue}`, eventRes => {
         eventRes.setEncoding('utf8');
         let rawData = '';
         eventRes.on('data', chunk => {
@@ -50,7 +52,7 @@ router.get('/', async function (req, res, next) {
       });
     }
     else {
-      res.render('index', { title: 'Beat Buddy', username: req.cookies.username, admin: req.cookies.admin === 'true', searchedEvents: [] });
+      res.render('index', { title: 'Beat Buddy', username: req.cookies.username, admin: req.cookies.admin === 'true', searchedEvents: searchedEvents });
     }
   }
   else {
@@ -66,8 +68,9 @@ router.get('/event/:eventID', async function (req, res, next) {
 router.get('/users', async function (req, res, next) {
   if (req.cookies.username) {
     const searchValue = req.query.search;
-    const searchedUsers = [];
+    let searchedUsers = undefined;
     if (searchValue) {
+      searchedUsers = [];
       const users = await User.find();
       for (const user of users) {
         if (user.username.includes(searchValue)) {

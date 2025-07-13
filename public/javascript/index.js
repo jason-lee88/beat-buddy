@@ -13,9 +13,10 @@ window.addEventListener('load', function () {
         });
     }
 
-    const eventsearchbutton = document.getElementById("eventsearchbutton");
-    if (eventsearchbutton) {
-        eventsearchbutton.addEventListener("click", async function () {
+    const eventsearchform = document.getElementById("eventsearchform");
+    if (eventsearchform) {
+        eventsearchform.addEventListener("submit", async function (e) {
+            e.preventDefault();
             const searchValue = document.getElementById("eventsearch").value;
             if (searchValue.length > 0) {
                 location.href = '/?search=' + searchValue;
@@ -35,7 +36,7 @@ window.addEventListener('load', function () {
 
     const interestedButtons = document.querySelectorAll("button.interested");
     for (interestedbutton of interestedButtons) {
-        interestedbutton.addEventListener("click", async function() {
+        interestedbutton.addEventListener("click", async function () {
             let data = {};
             const eventID = this.parentNode.id;
             for (child of this.parentNode.childNodes) {

@@ -3,7 +3,7 @@ extends layout
 append head
   title= title
   link(rel='stylesheet', href='/stylesheets/index.css')
-  script(src='/javascripts/index.js')
+  script(src='/javascript/index.js')
 block content
   body
     div#header
@@ -13,18 +13,22 @@ block content
       else
         h3 Welcome! Please create an account or sign in to continue...
     if username
-      input(placeholder='Search an Event').searchbox#eventsearch
-      button.searchbutton#eventsearchbutton
-        | Search
-      each searchedEvent in searchedEvents
-        div(id=searchedEvent.eventID).concert
-          button.name.concerttitle= searchedEvent.eventName
-          p.date.concertfield= "Date: " + searchedEvent.eventDate
-          p.time.concertfield= "Time: " + searchedEvent.eventTime
-          p.addressName.concertfield= "Venue Name: " + searchedEvent.addressName
-          p.address.concertfield= "Venue Address: " + searchedEvent.addressRoad + ', ' + searchedEvent.addressCity + ', ' + searchedEvent.addressState + ' ' + searchedEvent.addressZip
-          button.interested
-            | I'm Interested!
+      form(id='eventsearchform')
+        input(placeholder='Search an Event').searchbox#eventsearch
+        input(type='submit', value='Search').searchbutton#eventsearchbutton
+      if searchedEvents !== undefined
+        if searchedEvents.length === 0
+          p.noevents No events found. Please try a different search.
+        else
+          each searchedEvent in searchedEvents
+            div(id=searchedEvent.eventID).concert
+              button.name.concerttitle= searchedEvent.eventName
+              p.date.concertfield= "Date: " + searchedEvent.eventDate
+              p.time.concertfield= "Time: " + searchedEvent.eventTime
+              p.addressName.concertfield= "Venue Name: " + searchedEvent.addressName
+              p.address.concertfield= "Venue Address: " + searchedEvent.addressRoad + ', ' + searchedEvent.addressCity + ', ' + searchedEvent.addressState + ' ' + searchedEvent.addressZip
+              button.interested
+                | I'm Interested!
     else
       button.outbutton#signup Create an Account
       button.outbutton#signin Sign In
