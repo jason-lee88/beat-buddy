@@ -1,7 +1,8 @@
-window.addEventListener('load', function() {
-    const submitbutton = document.getElementById("submitbutton");
-    if (submitbutton) {
-        submitbutton.addEventListener("click", async function() {
+window.addEventListener('load', function () {
+    const signInForm = document.getElementById("signinform");
+    if (signInForm) {
+        signInForm.addEventListener("submit", async function (e) {
+            e.preventDefault();
             const username = document.getElementById("username").value;
             const password = document.getElementById("password").value;
             let data = {

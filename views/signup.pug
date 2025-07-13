@@ -8,15 +8,15 @@ block content
     div#header
       h1= title
     if !username
-      h5 Username (required):
-      input.field#username
-      h5 Password (required):
-      input(type='password').field#password
-      h5 Email Address:
-      input.field#email
-      h5 Instagram: 
-      input(value="@").field#instagram
-      h5 Snapchat:
-      input(value="@").field#snapchat
-      button#submitbutton
-        | Sign Up
+      form(id="signupform")
+        h5 Username (required):
+        input.field#username
+        h5 Password (required):
+        input(type='password').field#password
+        h5 Email Address:
+        input.field#email
+        h5 Instagram: 
+        input(value="@").field#instagram
+        h5 Snapchat:
+        input(value="@").field#snapchat
+        input(type="submit" value="Sign Up")#submitbutton

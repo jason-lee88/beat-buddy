@@ -1,7 +1,7 @@
-window.addEventListener('load', async function() {
+window.addEventListener('load', async function () {
     const instagram = document.getElementById("instagram");
     if (instagram) {
-        instagram.addEventListener("input", function() {
+        instagram.addEventListener("input", function () {
             if (instagram.value.charAt(0) !== "@") {
                 instagram.value = "@" + instagram.value;
             }
@@ -10,16 +10,17 @@ window.addEventListener('load', async function() {
 
     const snapchat = document.getElementById("snapchat");
     if (snapchat) {
-        snapchat.addEventListener("input", function() {
+        snapchat.addEventListener("input", function () {
             if (snapchat.value.charAt(0) !== "@") {
                 snapchat.value = "@" + snapchat.value;
             }
         })
     }
 
-    const submitbutton = document.getElementById("submitbutton");
-    if (submitbutton) {
-        submitbutton.addEventListener("click", async function() {
+    const signUpForm = document.getElementById("signupform");
+    if (signUpForm) {
+        signUpForm.addEventListener("submit", async function (e) {
+            e.preventDefault();
             const username = document.getElementById("username").value;
             const password = document.getElementById("password").value;
             let data = {
