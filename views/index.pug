@@ -16,7 +16,7 @@ block content
       form(id='eventsearchform')
         input(placeholder='Search an Event').searchbox#eventsearch
         input(type='submit', value='Search').searchbutton#eventsearchbutton
-      if searchedEvents !== undefined
+      if searchedEvents
         if searchedEvents.length === 0
           p.noevents No events found. Please try a different search.
         else

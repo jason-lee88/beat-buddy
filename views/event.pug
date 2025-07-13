@@ -10,12 +10,16 @@ block content
       if username
         h3 Signed in as #{username}
     if username
-      h5= "Event: " + event.name
-      h5= "Date: " + event.date
-      h5= "Time: " + event.time
-      h5= "Venue Name: " + event.addressName
-      h5= "Venue Address: " + event.address 
-      br
-      h5 Interested Users:
-      each user in event.interest
-        h5.field= user
+      if event
+        h5= "Event: " + event.name
+        h5= "Date: " + event.date
+        h5= "Time: " + event.time
+        h5= "Venue Name: " + event.addressName
+        h5= "Venue Address: " + event.address 
+        br
+        h5 Interested Users:
+        each user in event.interest
+          h5.field= user
+      else
+        p.noeventdetails No details are available for this event. Either this event doesn't exist, or no users have marked their interest for this event.
+        p.noeventdetails Click "I'm Interested!" on the previous page to see more details here.

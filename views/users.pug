@@ -14,7 +14,7 @@ block content
       form(id='usersearchform')
         input(placeholder='Search a User').searchbox#usersearch
         input(type='submit', value='Search').searchbutton#usersearchbutton
-      if searchedUsers !== undefined
+      if searchedUsers
         if searchedUsers.length === 0
           p.nousers No users found. Please try a different search.
         else

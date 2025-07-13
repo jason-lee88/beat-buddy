@@ -3,3 +3,8 @@ h5 {
     font-size: 15px;
     margin-bottom: 10px;
 }
+
+p.noeventdetails {
+    font-size: 24px;
+    text-align: center;
+}
